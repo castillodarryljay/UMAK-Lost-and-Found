@@ -68,48 +68,6 @@ Step 3: Run the Program
    - Username: admin
    - Password: admin123
 
-New Features & Documentation
-----------------------------
-1. Project & Branding:
-   - Added Dual-Logo support: Both the official school logo and the new project logo are displayed in the Java app.
-   - To update the project logo, replace `sample image/project_logo.png`.
-
-2. Claim Management System:
-   - Students can now "File a Claim" for found items directly from the dashboard.
-   - Website/Desktop Sync: Claims and reports filed on the website appear instantly in the desktop app.
-   - Admins can manage these claims in the new "Manage Claims" tab.
-   - Automated cleanup: Deleting an item now automatically clears all associated claims.
-
-3. Admin Sessions & Statistics:
-   - Admins can view active user sessions in the "Sessions" tab with real-time "Online/Offline" status.
-   - The "Statistics" tab provides a visual overview of system metrics (Found vs Lost, Resolved vs Pending).
-
-4. Inventory Management:
-   - A dedicated "Inventory" tab allows Admins to browse all records in a sortable table.
-   - Quick "Delete Item" functionality with automated cleanup of associated claims.
-
-5. Profile & Security:
-   - Enhanced Profile Page with dynamic initials-based avatars.
-   - Activity Summary: Users can see counts of their reported lost items, returned items, and approved claims.
-   - Privacy Settings: Built-in "Change Password" functionality directly from the profile.
-
-6. Validation & Safety:
-   - Improved form validation for Item Reports (validated time format, category selection, and date picker).
-   - Duplicate claim prevention: Users can no longer file multiple claims for the same item.
-   - Database auto-migration: The program automatically handles schema updates (adding new columns like department, is_online, etc.) on startup.
-
-7. UI/UX Improvements:
-   - Enhanced Login Page: Larger input fields (350x45px) with support for both Student No and Email login.
-   - Active Navigation Highlighting: Current page is highlighted in the sidebar.
-   - Dark Mode: Toggle between Light and Dark mode using the button at the bottom of the sidebar.
-   - Tooltips & Empty States: Descriptive tooltips on all buttons and "No items found" messages.
-   - Dual-Logo Support: Displays both school and project logos.
-
-8. Technical Improvements:
-   - Database Connection Handling: Automatic retry and clear error messages for XAMPP connection issues.
-   - Schema Migrations: Seamlessly updates the database structure for returning users without losing data.
-   - Transaction Safety: Ensures data integrity during report submissions and claim approvals.
-
 Note: Ensure Java is installed on your computer to run the program.
 Recommended: Java 8 or higher (Java 11+ preferred for best FlatLaf compatibility).
 
