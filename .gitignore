@@ -1,11 +1,15 @@
 # Java
 *.class
-*.jar
+# *.jar  <-- Commented out to allow lib folder contents
 *.war
 *.ear
 *.zip
 *.tar.gz
 *.rar
+
+# Allow lib folder
+!lib/
+!lib/*.jar
 
 # IDEs
 .project
