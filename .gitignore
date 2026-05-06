@@ -1,0 +1,29 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDEs
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+*.iws
+*.ipr
+bin/
+out/
+build/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.log
+*.tmp
+*.bak

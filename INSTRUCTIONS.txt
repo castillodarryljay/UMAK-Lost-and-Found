@@ -1,0 +1,120 @@
+UMak Lost & Found - Java Program Setup Guide
+=============================================
+
+Step 1: Install & Start XAMPP
+-----------------------------
+1. Download and install XAMPP (Windows version).
+2. Open the XAMPP Control Panel.
+3. Click "Start" next to MySQL.
+
+Step 2: Set up the Database
+---------------------------
+1. Open the Command Prompt (cmd) on your computer.
+2. Type this command and press Enter:
+   C:\xampp\mysql\bin\mysql.exe -u root
+3. Once you see "mysql>", copy and paste the commands below one by one:
+
+   CREATE DATABASE UMAK_LostFound;
+   USE UMAK_LostFound;
+
+   CREATE TABLE users (
+       id INT PRIMARY KEY AUTO_INCREMENT,
+       student_no VARCHAR(20) UNIQUE,
+       email VARCHAR(100) UNIQUE,
+       full_name VARCHAR(100),
+       password VARCHAR(255),
+       department VARCHAR(255),
+       role ENUM('Student', 'Admin') DEFAULT 'Student',
+       is_online BOOLEAN DEFAULT 0,
+       last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   );
+
+   CREATE TABLE items (
+       id INT PRIMARY KEY AUTO_INCREMENT,
+       item_name VARCHAR(100),
+       category VARCHAR(50),
+       description TEXT,
+       location VARCHAR(100),
+       item_type ENUM('Lost', 'Found'),
+       status VARCHAR(50) DEFAULT 'Pending',
+       date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       image_path VARCHAR(255),
+       reporter_id INT,
+       date_lost DATE,
+       time_lost TIME
+   );
+
+   CREATE TABLE claims (
+       claim_id INT AUTO_INCREMENT PRIMARY KEY,
+       item_id INT,
+       user_id INT,
+       student_name VARCHAR(100),
+       student_email VARCHAR(100),
+       claim_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       status VARCHAR(20) DEFAULT 'Pending',
+       justification TEXT,
+       FOREIGN KEY (item_id) REFERENCES items(id),
+       FOREIGN KEY (user_id) REFERENCES users(id),
+       CONSTRAINT uk_claims UNIQUE (item_id, user_id)
+   );
+
+   INSERT INTO users (student_no, full_name, password, role)
+   VALUES ('admin', 'Admin User', 'admin123', 'Admin');
+
+Step 3: Run the Program
+-----------------------
+1. Double-click the "run.bat" file in this folder.
+2. Login with the default admin account:
+   - Username: admin
+   - Password: admin123
+
+New Features & Documentation
+----------------------------
+1. Project & Branding:
+   - Added Dual-Logo support: Both the official school logo and the new project logo are displayed in the Java app.
+   - To update the project logo, replace `sample image/project_logo.png`.
+
+2. Claim Management System:
+   - Students can now "File a Claim" for found items directly from the dashboard.
+   - Website/Desktop Sync: Claims and reports filed on the website appear instantly in the desktop app.
+   - Admins can manage these claims in the new "Manage Claims" tab.
+   - Automated cleanup: Deleting an item now automatically clears all associated claims.
+
+3. Admin Sessions & Statistics:
+   - Admins can view active user sessions in the "Sessions" tab with real-time "Online/Offline" status.
+   - The "Statistics" tab provides a visual overview of system metrics (Found vs Lost, Resolved vs Pending).
+
+4. Inventory Management:
+   - A dedicated "Inventory" tab allows Admins to browse all records in a sortable table.
+   - Quick "Delete Item" functionality with automated cleanup of associated claims.
+
+5. Profile & Security:
+   - Enhanced Profile Page with dynamic initials-based avatars.
+   - Activity Summary: Users can see counts of their reported lost items, returned items, and approved claims.
+   - Privacy Settings: Built-in "Change Password" functionality directly from the profile.
+
+6. Validation & Safety:
+   - Improved form validation for Item Reports (validated time format, category selection, and date picker).
+   - Duplicate claim prevention: Users can no longer file multiple claims for the same item.
+   - Database auto-migration: The program automatically handles schema updates (adding new columns like department, is_online, etc.) on startup.
+
+7. UI/UX Improvements:
+   - Enhanced Login Page: Larger input fields (350x45px) with support for both Student No and Email login.
+   - Active Navigation Highlighting: Current page is highlighted in the sidebar.
+   - Dark Mode: Toggle between Light and Dark mode using the button at the bottom of the sidebar.
+   - Tooltips & Empty States: Descriptive tooltips on all buttons and "No items found" messages.
+   - Dual-Logo Support: Displays both school and project logos.
+
+8. Technical Improvements:
+   - Database Connection Handling: Automatic retry and clear error messages for XAMPP connection issues.
+   - Schema Migrations: Seamlessly updates the database structure for returning users without losing data.
+   - Transaction Safety: Ensures data integrity during report submissions and claim approvals.
+
+Note: Ensure Java is installed on your computer to run the program.
+Recommended: Java 8 or higher (Java 11+ preferred for best FlatLaf compatibility).
+
+Troubleshooting:
+-----------------
+- If login fails with "Cannot connect to database": Make sure XAMPP MySQL is running.
+- If images don't appear: Check that the image paths in the database are correct.
+- If the program doesn't start: Verify Java is installed by running `java -version` in cmd.
